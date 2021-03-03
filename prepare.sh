@@ -7,4 +7,4 @@ rm -rf node_modules/
 rm -rf dist/
 
 npm install
-npm update the-lodash the-promise @kubevious/ui-framework @kubevious/ui-middleware @kubevious/ui-components
+npm update the-lodash @kubevious/ui-framework @kubevious/ui-components
