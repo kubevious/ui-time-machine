@@ -467,7 +467,7 @@ export class Timeline extends ClassComponent {
         // @ts-ignore: Unreachable code error
         this._brush = d3.brushX(this._subXScale).on("brush end", function () {
             // @ts-ignore: Unreachable code error
-            if (!d3.event.selection && d3.event.sourceEvent) {
+            if (d3.event && !d3.event.selection && d3.event.sourceEvent) {
                 self._calculateBrushInit()
                 return
             }
@@ -695,7 +695,7 @@ export class Timeline extends ClassComponent {
 
     _onUserChartClick(): void {
         // @ts-ignore: Unreachable code error
-        const posX = d3.event.x + this._calculateCoeff(d3.event.x, 25)
+        const posX = this._calculateCoeff(0, 25)
         const date = this._xScale.invert(posX)
         this.sharedState.set("time_machine_enabled", true)
         this.sharedState.set("time_machine_target_date", date)
@@ -715,8 +715,7 @@ export class Timeline extends ClassComponent {
                 self._hoverLineElem.attr("display", "inherit")
             })
             .on("mousemove", function () {
-                // @ts-ignore: Unreachable code error
-                let mousex = d3.mouse(this)
+                let mousex: number | [number, number] = d3.pointer(event)
                 mousex = mousex[0]
                 self._hoverLineElem.attr(
                     "transform",
@@ -725,8 +724,7 @@ export class Timeline extends ClassComponent {
                 self._renderTooltip(mousex)
             })
             .on("mouseover", function () {
-                // @ts-ignore: Unreachable code error
-                let mousex = d3.mouse(this)
+                let mousex: number | [number, number]  = d3.pointer(event)
                 mousex = mousex[0]
                 self._hoverLineElem.attr(
                     "transform",
