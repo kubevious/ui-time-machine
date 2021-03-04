@@ -467,7 +467,7 @@ export class Timeline extends ClassComponent {
         // @ts-ignore: Unreachable code error
         this._brush = d3.brushX(this._subXScale).on("brush end", function () {
             // @ts-ignore: Unreachable code error
-            if (d3.event && !d3.event.selection && d3.event.sourceEvent) {
+            if (event && !event.selection && event.sourceEvent) {
                 self._calculateBrushInit()
                 return
             }
@@ -644,9 +644,9 @@ export class Timeline extends ClassComponent {
 
     _onUserDragSelector(): void {
         // @ts-ignore: Unreachable code error
-        this._selectorElem.attr("transform", "translate(" + d3.event.x + ", 0)")
+        this._selectorElem.attr("transform", "translate(" + event.x + ", 0)")
         // @ts-ignore: Unreachable code error
-        let date = moment(this._xScale.invert(d3.event.x))
+        let date = moment(this._xScale.invert(event.x))
         if (date < this.time_machine_actual_date_range.from) {
             date = this.time_machine_actual_date_range.from
         }
@@ -695,7 +695,7 @@ export class Timeline extends ClassComponent {
 
     _onUserChartClick(): void {
         // @ts-ignore: Unreachable code error
-        const posX = this._calculateCoeff(0, 25)
+        const posX = event.x + this._calculateCoeff(event.x, 25)
         const date = this._xScale.invert(posX)
         this.sharedState.set("time_machine_enabled", true)
         this.sharedState.set("time_machine_target_date", date)
