@@ -13,8 +13,8 @@ describe('Timeline', () => {
   test('Should check that the component Timeline is rendered', async () => {
     const { findByTestId } = renderTimeline();
 
-    const copyClipboard = await findByTestId('timeline');
+    const timeline = await findByTestId('timeline');
 
-    expect(copyClipboard);
+    expect(timeline);
   });
 });
