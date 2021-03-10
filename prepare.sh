@@ -8,3 +8,5 @@ rm -rf dist/
 
 npm install
 npm update the-lodash @kubevious/ui-framework @kubevious/ui-components
+
+${MY_DIR}/build.sh
