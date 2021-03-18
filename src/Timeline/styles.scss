@@ -143,23 +143,23 @@ a:focus {
 }
 
 .tl-actions a.reset {
-    background: #292A2F url('/img/timeline/reset.svg') center center no-repeat;
+    background: #292A2F url('../img/timeline/reset.svg') center center no-repeat;
     background-size: 16px;
 }
 
 .tl-actions a.timemachine {
-    background: #292A2F url('/img/timeline/clock.svg') center center no-repeat;
+    background: #292A2F url('../img/timeline/clock.svg') center center no-repeat;
     background-size: 16px;
 }
 
 .tl-actions a.reset:hover {
-    background: #35373E url('/img/timeline/reset.svg') center center no-repeat;
+    background: #35373E url('../img/timeline/reset.svg') center center no-repeat;
 }
 
 .tl-actions a.timemachine:hover {
-    background: #35373E url('/img/timeline/clock.svg') center center no-repeat;
+    background: #35373E url('../img/timeline/clock.svg') center center no-repeat;
 }
 
 .tl-actions a.timemachine.active {
-    background: #FCBD3F url('/img/timeline/clock-active.svg') center center no-repeat;
+    background: #FCBD3F url('../img/timeline/clock-active.svg') center center no-repeat;
 }

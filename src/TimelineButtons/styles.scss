@@ -31,25 +31,25 @@ $timelineYellow: rgb(252, 189, 63);
         cursor: pointer;
 
         &.reset {
-            background: #292A2F url('/img/timeline/reset.svg') center center no-repeat;
+            background: #292A2F url('../img/timeline/reset.svg') center center no-repeat;
             background-size: 16px;
 
             &:hover {
-                background: #35373E url('/img/timeline/reset.svg') center center no-repeat;
+                background: #35373E url('../img/timeline/reset.svg') center center no-repeat;
             }
         }
 
         &.timemachine {
-            background: #292A2F url('/img/timeline/clock.svg') center center no-repeat;
+            background: #292A2F url('../img/timeline/clock.svg') center center no-repeat;
             background-size: 20px;
 
             &:hover {
-                background: #35373E url('/img/timeline/clock.svg') center center no-repeat;
+                background: #35373E url('../img/timeline/clock.svg') center center no-repeat;
                 background-size: 20px;
             }
 
             &.active {
-                background: $timelineYellow url('/img/timeline/clock-active.svg') center center no-repeat;
+                background: $timelineYellow url('../img/timeline/clock-active.svg') center center no-repeat;
                 background-size: 20px;
             }
         }
