@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "types": "dist",
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "public/**/*"
   ],
   "scripts": {
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' env IS_TESTING=true jest",
@@ -19,8 +20,8 @@
   "author": "Ruben Hakopian <ruben.hakopian@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@kubevious/ui-components": "^1.0.23",
-    "@kubevious/ui-framework": "^1.0.13",
+    "@kubevious/ui-components": "^1.0.40",
+    "@kubevious/ui-framework": "^1.0.21",
     "classnames": "^2.2.6",
     "d3": "^6.5.0",
     "jquery": "^3.5.1",
