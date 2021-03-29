@@ -1,6 +1,6 @@
 $timelineYellow: rgb(252, 189, 63);
 
-.tl-interaction a.timemachine .tooltiptext, .tl-interaction a.reset .tooltiptext {
+.tlInteraction a.timemachine .tooltiptext, .tlInteraction a.reset .tooltiptext {
     visibility: hidden;
     width: 120px;
     background-color: #555;
@@ -15,12 +15,12 @@ $timelineYellow: rgb(252, 189, 63);
     margin-top: 30px;
 }
 
-.tl-interaction a.timemachine:hover .tooltiptext, .tl-interaction a.reset:hover .tooltiptext {
+.tlInteraction a.timemachine:hover .tooltiptext, .tlInteraction a.reset:hover .tooltiptext {
     visibility: visible;
       opacity: 1;
     }
 
-.tl-interaction {
+.tlInteraction {
     a {
         display: block;
         float: left;
