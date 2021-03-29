@@ -1,46 +1,13 @@
 $timelineYellow: rgb(252, 189, 63);
 
-.timeline {
-    .sizeToParent {
-        display: flex;
-    }
-
-    svg {
-        .changes {
-            stroke: #fff;
-            stroke-width: 2px;
-            fill: none;
-            pointer-events: bounding-box;
-        }
-
-        .warnings {
-            fill: $timelineYellow;
-            opacity: 0.8;
-            pointer-events: bounding-box;
-        }
-
-        .errors {
-            fill: #b77;
-            opacity: 0.8;
-            pointer-events: bounding-box;
-        }
-
-        .selector * {
-            fill: $timelineYellow;
-            stroke-width: 2;
-            stroke: $timelineYellow;
-            cursor: col-resize;
-        }
-
-        .subSelector * {
-            fill: rgb(252, 189, 63);
-            stroke-width: 2;
-            stroke: rgb(252, 189, 63);
-        }
-    } 
+.timeline svg .changes {
+    stroke: #fff;
+    stroke-width: 2px;
+    fill: none;
+    pointer-events: bounding-box;
 }
 
-.sizeToParent {
+.size-to-parent {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -50,7 +17,32 @@ $timelineYellow: rgb(252, 189, 63);
     overflow: hidden;
 }
 
-.chartView {
+.timeline svg .warnings {
+    fill: $timelineYellow;
+    opacity: 0.8;
+    pointer-events: bounding-box;
+}
+
+.timeline svg .errors {
+    fill: #b77;
+    opacity: 0.8;
+    pointer-events: bounding-box;
+}
+
+.timeline svg .selector * {
+    fill: $timelineYellow;
+    stroke-width: 2;
+    stroke: $timelineYellow;
+    cursor: col-resize;
+}
+
+.timeline svg .sub-selector * {
+    fill: rgb(252, 189, 63);
+    stroke-width: 2;
+    stroke: rgb(252, 189, 63);
+}
+
+.chart-view {
     width: calc(100% - 60px);
     height: 100%;
     display: flex;
@@ -59,11 +51,11 @@ $timelineYellow: rgb(252, 189, 63);
     padding-left: 20px;
 }
 
-.xBrush > * {
+.x-brush > * {
     height: 30px
 }
 
-.customTooltip {
+.custom-tooltip {
     width: 120px;
     font-family: 'Montserrat';
     position: absolute;
@@ -95,75 +87,79 @@ $timelineYellow: rgb(252, 189, 63);
         width: calc(100% - 10px);
     }
 
-    .txtRed {
+    .txt-red {
         background-color: #9B6666;
     }
 
-    .txtOrange {
+    .txt-orange {
         background-color: $timelineYellow;
     }
 
-    .txtWhite {
+    .txt-white {
         background-color: white;
     }
 }
 
-.hoverLine {
+.hover-line {
     stroke-width: 2;
     stroke: gray;
     opacity: 0.7;
 }
 
-.selectedTimeBottom {
+.selected-time-bottom {
     font-size: 20px;
 }
 
-.selectedTimeTop {
+.selected-time-top {
     font-size: 40px;
+}
+
+.timeline.size-to-parent {
+    display: flex;
 }
 
 a:focus {
     outline: none;
 }
 
-.tlActions {
+
+.tl-actions {
     padding: 10px 15px;
     border-left: solid 1px #35373E;
     float: right;
     height: 100%;
     overflow: hidden;
     width: 83px;
+}
 
-    a {
-        display: block;
-        float: left;
-        width: 20px;
-        height: 20px;
-        margin: 3px;
-        border-radius: 2px;
-        cursor: pointer;
-        
-    }
+.tl-actions a {
+    display: block;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+}
 
-    a.reset {
-        background: #292A2F url('/img/timeline/reset.svg') center center no-repeat;
-        background-size: 16px;
-    }
+.tl-actions a.reset {
+    background: #292A2F url('/img/timeline/reset.svg') center center no-repeat;
+    background-size: 16px;
+}
 
-    a.timemachine {
-        background: #292A2F url('/img/timeline/clock.svg') center center no-repeat;
-        background-size: 16px;
-    }
+.tl-actions a.timemachine {
+    background: #292A2F url('/img/timeline/clock.svg') center center no-repeat;
+    background-size: 16px;
+}
 
-    a.reset:hover {
-        background: #35373E url('/img/timeline/reset.svg') center center no-repeat;
-    }
+.tl-actions a.reset:hover {
+    background: #35373E url('/img/timeline/reset.svg') center center no-repeat;
+}
 
-    a.timemachine:hover {
-        background: #35373E url('/img/timeline/clock.svg') center center no-repeat;
-    }
-    
-    a.timemachine.active {
-        background: #FCBD3F url('/img/timeline/clock-active.svg') center center no-repeat;
-    }
+.tl-actions a.timemachine:hover {
+    background: #35373E url('/img/timeline/clock.svg') center center no-repeat;
+}
+
+.tl-actions a.timemachine.active {
+    background: #FCBD3F url('/img/timeline/clock-active.svg') center center no-repeat;
 }

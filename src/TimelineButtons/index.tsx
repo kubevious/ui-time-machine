@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "./styles.scss"
+import "./styles.scss"
 import cx from "classnames"
 import { ClassComponent } from "@kubevious/ui-framework"
 import moment from "moment"
@@ -68,24 +68,24 @@ export class TimelineButtons extends ClassComponent<{}, TimelineButtonsState> {
     render() {
         const { time_machine_enabled } = this.state
         return (
-            <div data-testid="timeline-buttons" className={styles.tlInteraction}>
+            <div data-testid="timeline-buttons" className="tl-interaction">
                 <a
                     role="button"
                     id="btnTimelineTimeMachine"
-                    className={cx(styles.timemachine, {
+                    className={cx("timemachine", {
                         active: time_machine_enabled,
                     })}
                     onClick={() => this._toggle()}
                 >
-                    <span className={styles.tooltiptext}>Activate Time Machine</span>
+                    <span className="tooltiptext">Activate Time Machine</span>
                 </a>
                 <a
                     role="button"
                     id="btnTimelineTimeMachine"
-                    className={styles.reset}
+                    className={`reset`}
                     onClick={() => this._reset()}
                 >
-                    <span className={styles.tooltiptext}>Reset changes</span>
+                    <span className="tooltiptext">Reset changes</span>
                 </a>
             </div>
         )

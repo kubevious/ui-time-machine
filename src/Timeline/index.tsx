@@ -8,7 +8,7 @@ import * as d3 from "d3"
 import { TimelineButtons } from "../TimelineButtons"
 import { TimelineUtils } from "../timeline-utils"
 
-import styles from './styles.scss';
+import "./styles.scss"
 import { Actual, ChartData } from "./type"
 
 const isTesting = process.env.IS_TESTING;
@@ -100,13 +100,13 @@ export class Timeline extends ClassComponent {
 
         this._hoverLineElem = this._mainChartElem
             .append("g")
-            .attr("class", "hoverLine")
+            .attr("class", "hover-line")
             .append("path")
             .attr("pointer-events", "none")
 
         this._tooltipElem = this._parentElem
             .append("div")
-            .attr("class", "customTooltip")
+            .attr("class", "custom-tooltip")
 
         this._subSvgElem = this._parentElem
             .insert("svg")
@@ -458,7 +458,7 @@ export class Timeline extends ClassComponent {
     }
 
     _renderSubchartBrush(): void {
-        $(".xBrush").detach()
+        $(".x-brush").detach()
         // The test will not be able to work with a svgelement that does not exist
         if (isTesting) {
             return
@@ -475,8 +475,8 @@ export class Timeline extends ClassComponent {
         })
 
         this._subSvgElem
-            .insert("g", ".subSelector")
-            .classed("xBrush", true)
+            .insert("g", ".sub-selector")
+            .classed("x-brush", true)
             .call(this._brush)
             .selectAll("rect")
             .attr("y", 0)
@@ -496,17 +496,17 @@ export class Timeline extends ClassComponent {
         if (startPos > 0 && endPos > 0 && startPos !== endPos) {
             this._movingTheBrush = true
             // @ts-ignore: Unreachable code error
-            d3.select(".xBrush").call(this._brush.move, [startPos, endPos])
+            d3.select(".x-brush").call(this._brush.move, [startPos, endPos])
             this._movingTheBrush = false
         } else if (endPos > 0 && startPos !== endPos) {
             this._movingTheBrush = true
             // @ts-ignore: Unreachable code error
-            d3.select(".xBrush").call(this._brush.move, [0, this._width])
+            d3.select(".x-brush").call(this._brush.move, [0, this._width])
             this._movingTheBrush = false
         } else {
             this._movingTheBrush = true
             // @ts-ignore: Unreachable code error
-            d3.select(".xBrush").call(this._brush.move, null)
+            d3.select(".x-brush").call(this._brush.move, null)
             this._movingTheBrush = false
         }
     }
@@ -665,13 +665,13 @@ export class Timeline extends ClassComponent {
     }
 
     _renderSubchartSelector(): void {
-        $(".subSelector").detach()
+        $(".sub-selector").detach()
         if (!this.actualTargetDate) {
             return
         }
         this._subchartSelectorElem = this._subSvgElem
             .append("g")
-            .attr("class", "subSelector")
+            .attr("class", "sub-selector")
 
         this._subchartSelectorElem.append("path").attr("d", "M0,0 v" + 30)
     }
@@ -682,7 +682,7 @@ export class Timeline extends ClassComponent {
             !this.actualTargetDate ||
             !this._xScale
         ) {
-            $(".subSelector").detach()
+            $(".sub-selector").detach()
             return
         }
         const date = moment(this.actualTargetDate)
@@ -756,11 +756,11 @@ export class Timeline extends ClassComponent {
                 ? ""
                 : "<p>Click to activate Time Machine at </p>") +
             `<p><b>${formattedDate}</p></b>
-            <p className="${styles.txtWhite}">Changes${this.wrap ? "<br>" : ": "
+            <p class="txt-white">Changes${this.wrap ? "<br>" : ": "
             }<b>${changes}</b></p>
-            <p className=${styles.txtRed}>Errors${this.wrap ? "<br>" : ": "
+            <p class="txt-red">Errors${this.wrap ? "<br>" : ": "
             }<b>${error}</b></p>
-            <p className=${styles.txtOrange}>Warnings${this.wrap ? "<br>" : ": "
+            <p class="txt-orange">Warnings${this.wrap ? "<br>" : ": "
             }<b>${warn}</b>
           </p>`
 
@@ -831,7 +831,7 @@ export class Timeline extends ClassComponent {
     }
 
     componentDidMount() {
-        this._parentElem = d3.select(".chartView")
+        this._parentElem = d3.select(".chart-view")
         this._setup()
 
         this.subscribeToSharedState(
@@ -893,9 +893,9 @@ export class Timeline extends ClassComponent {
 
     render() {
         return (
-            <div data-testid="timeline" id="timelineComponent" className={`${styles.timeline} ${styles.sizeToParent}`}>
-                <div className={`${styles.chartView}`}></div>
-                <div className={`${styles.tlActions}`}>
+            <div data-testid="timeline" id="timelineComponent" className="timeline size-to-parent">
+                <div className="chart-view"></div>
+                <div className="tl-actions">
                     <TimelineButtons />
                 </div>
             </div>
