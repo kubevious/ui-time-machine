@@ -1,20 +1,18 @@
-import 'jest';
+import 'jest'
 
-import React from 'react';
-import { render } from '@testing-library/react';
+import React from 'react'
+import { render, RenderResult } from '@testing-library/react'
 
-import { TimelineButtons } from '../src';
+import { TimelineButtons } from '../src'
 
-function renderTimelineButtons() {
-  return render(<TimelineButtons />);
-}
+const renderComponent = (): RenderResult => render(<TimelineButtons />)
 
 describe('TimelineButtons', () => {
-  test('Should check that the component TimelineButtons is rendered', async () => {
-    const { findByTestId } = renderTimelineButtons();
+    test('should check that the component TimelineButtons is rendered', async () => {
+        const { findByTestId } = renderComponent()
 
-    const timelineButtons = await findByTestId('timeline-buttons');
+        const timelineButtons = await findByTestId('timeline-buttons')
 
-    expect(timelineButtons);
-  });
-});
+        expect(timelineButtons).toBeTruthy()
+    })
+})

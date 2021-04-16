@@ -7,6 +7,6 @@ export type ChartData = {
 }
 
 export type Actual = {
-    to?: moment.Moment;
-    from: moment.Moment;
+    to?: moment.Moment
+    from: moment.Moment
 }

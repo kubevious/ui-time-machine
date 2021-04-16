@@ -1,17 +1,17 @@
-import React from "react"
-import { ClassComponent } from "@kubevious/ui-framework"
-import $ from "jquery"
-import _ from "the-lodash"
-import moment, { DurationInputArg1 } from "moment"
-import { formatDate } from "../utils"
-import * as d3 from "d3"
-import { TimelineButtons } from "../TimelineButtons"
-import { TimelineUtils } from "../timeline-utils"
+import React from 'react'
+import { ClassComponent } from '@kubevious/ui-framework'
+import $ from 'jquery'
+import _ from 'the-lodash'
+import moment, { DurationInputArg1 } from 'moment'
+import { formatDate } from '../utils'
+import * as d3 from 'd3'
+import { TimelineButtons } from '../TimelineButtons'
+import { TimelineUtils } from '../timeline-utils'
 
-import "./styles.scss"
-import { Actual, ChartData } from "./type"
+import './styles.scss'
+import { Actual, ChartData } from './type'
 
-const isTesting = process.env.IS_TESTING;
+const isTesting = process.env.IS_TESTING
 
 export class Timeline extends ClassComponent {
     actualTargetDate!: string | null
@@ -39,12 +39,10 @@ export class Timeline extends ClassComponent {
     chartData!: ChartData[]
     private _xScale!: d3.ScaleTime<number, number, never>
     private _yScaleChanges!: number[] & d3.ScaleLinear<number, number, never>
-    private _yScaleErrorsWarnings!: number[] &
-        d3.ScaleLinear<number, number, never>
+    private _yScaleErrorsWarnings!: number[] & d3.ScaleLinear<number, number, never>
     private _subXScale!: d3.ScaleTime<number, number, never>
     private _subYScaleChanges!: d3.ScaleLinear<number, number, never>
-    private _subYScaleErrorsWarnings!: number[] &
-        d3.ScaleLinear<number, number, never>
+    private _subYScaleErrorsWarnings!: number[] & d3.ScaleLinear<number, number, never>
     private _subXAxis!: d3.Axis<d3.AxisDomain>
     private _subYAxisChanges!: d3.Axis<d3.AxisDomain>
     private _brush!: d3.BrushBehavior<unknown>
@@ -57,7 +55,7 @@ export class Timeline extends ClassComponent {
         super(props)
 
         this.time_machine_actual_date_range = {
-            from: moment().subtract(this.dayInSec, "seconds"),
+            from: moment().subtract(this.dayInSec, 'seconds'),
         }
 
         this.dayInSec = 12 * 60 * 60
@@ -69,65 +67,57 @@ export class Timeline extends ClassComponent {
 
     _setup() {
         this._mainSvgElem = this._parentElem
-            .insert("svg", ":first-child")
-            .attr("position", "absolute")
-            .attr("overflow", "hidden")
-            .attr("top", 0)
-            .attr("left", 0)
-            .attr("right", 0)
-            .attr("bottom", 0)
-            .attr("width", "100%")
-            .attr("height", "calc(100% - 50px)")
+            .insert('svg', ':first-child')
+            .attr('position', 'absolute')
+            .attr('overflow', 'hidden')
+            .attr('top', 0)
+            .attr('left', 0)
+            .attr('right', 0)
+            .attr('bottom', 0)
+            .attr('width', '100%')
+            .attr('height', 'calc(100% - 50px)')
 
         this._mainChartElem = this._mainSvgElem
-            .append("g")
-            .attr("class", "main-chart")
-            .attr("transform", "translate(0, 0)")
-            .attr("height", "100%")
+            .append('g')
+            .attr('class', 'main-chart')
+            .attr('transform', 'translate(0, 0)')
+            .attr('height', '100%')
 
-        this._axisElem = this._mainChartElem.append("g").attr("class", "axis")
+        this._axisElem = this._mainChartElem.append('g').attr('class', 'axis')
 
-        this._chartsElem = this._mainChartElem
-            .append("g")
-            .attr("class", "charts")
+        this._chartsElem = this._mainChartElem.append('g').attr('class', 'charts')
 
-        this._chartsElem.on("click", this._onUserChartClick.bind(this))
+        this._chartsElem.on('click', this._onUserChartClick.bind(this))
 
         this._selectorElem = this._mainChartElem
-            .append("g")
-            .attr("class", "selector")
-            .call(d3.drag().on("drag", this._onUserDragSelector.bind(this)))
+            .append('g')
+            .attr('class', 'selector')
+            .call(d3.drag().on('drag', this._onUserDragSelector.bind(this)))
 
         this._hoverLineElem = this._mainChartElem
-            .append("g")
-            .attr("class", "hover-line")
-            .append("path")
-            .attr("pointer-events", "none")
+            .append('g')
+            .attr('class', 'hover-line')
+            .append('path')
+            .attr('pointer-events', 'none')
 
-        this._tooltipElem = this._parentElem
-            .append("div")
-            .attr("class", "custom-tooltip")
+        this._tooltipElem = this._parentElem.append('div').attr('class', 'custom-tooltip')
 
         this._subSvgElem = this._parentElem
-            .insert("svg")
-            .attr("position", "absolute")
-            .attr("overflow", "hidden")
-            .attr("top", 0)
-            .attr("left", 0)
-            .attr("right", 0)
-            .attr("bottom", 0)
-            .attr("width", "100%")
-            .attr("height", "50px")
+            .insert('svg')
+            .attr('position', 'absolute')
+            .attr('overflow', 'hidden')
+            .attr('top', 0)
+            .attr('left', 0)
+            .attr('right', 0)
+            .attr('bottom', 0)
+            .attr('width', '100%')
+            .attr('height', '50px')
 
-        this._subchartAxisElem = this._subSvgElem
-            .append("g")
-            .attr("class", "subchart-axis")
+        this._subchartAxisElem = this._subSvgElem.append('g').attr('class', 'subchart-axis')
 
-        this._subElemCharts = this._subSvgElem
-            .append("g")
-            .attr("class", "brush-charts")
+        this._subElemCharts = this._subSvgElem.append('g').attr('class', 'brush-charts')
 
-        $(document).on("layout-resize-timelineComponent", () => {
+        $(document).on('layout-resize-timelineComponent', () => {
             this._setupDimentions()
             this._updateHoverLineHeight()
         })
@@ -155,20 +145,11 @@ export class Timeline extends ClassComponent {
                 -margin.left,
                 0,
                 this._width + margin.left + margin.right,
-                this._height +
-                margin.top +
-                margin.bottom -
-                10 -
-                this._height / 65,
+                this._height + margin.top + margin.bottom - 10 - this._height / 65,
             ]
             this._applyViewBox(this._mainSvgElem, viewBox)
 
-            const subViewBox = [
-                -margin.left,
-                0,
-                this._width + margin.left + margin.right,
-                50,
-            ]
+            const subViewBox = [-margin.left, 0, this._width + margin.left + margin.right, 50]
             this._applyViewBox(this._subSvgElem, subViewBox)
 
             this._renderTimelineMain()
@@ -180,7 +161,7 @@ export class Timeline extends ClassComponent {
         const myViewBox = _.clone(viewBox)
         myViewBox[2] = Math.max(0, myViewBox[2])
         myViewBox[3] = Math.max(0, myViewBox[3])
-        elem.attr("viewBox", myViewBox.join(" "))
+        elem.attr('viewBox', myViewBox.join(' '))
     }
 
     _getMargin() {
@@ -265,10 +246,7 @@ export class Timeline extends ClassComponent {
         const last = this.chartPreviewData[this.chartPreviewData.length - 1]
         this._subXScale = d3
             .scaleTime()
-            .domain([
-                head ? head.dateMoment : moment().subtract("5", "days"),
-                last ? last.dateMoment : moment(),
-            ])
+            .domain([head ? head.dateMoment : moment().subtract('5', 'days'), last ? last.dateMoment : moment()])
             .range([0, this._width])
         this._subYScaleChanges = d3
             .scaleLinear()
@@ -310,7 +288,7 @@ export class Timeline extends ClassComponent {
                     // @ts-ignore: Unreachable code error
                     return this._yScaleErrorsWarnings(d.error + d.warn)
                 })
-            this._renderChart(errors, "errors")
+            this._renderChart(errors, 'errors')
         }
 
         {
@@ -327,7 +305,7 @@ export class Timeline extends ClassComponent {
                     // @ts-ignore: Unreachable code error
                     return this._yScaleErrorsWarnings(d.warn)
                 })
-            this._renderChart(warnings, "warnings")
+            this._renderChart(warnings, 'warnings')
         }
 
         {
@@ -342,7 +320,7 @@ export class Timeline extends ClassComponent {
                     return this._yScaleChanges(d.changes)
                 })
 
-            this._renderChart(changes, "changes")
+            this._renderChart(changes, 'changes')
         }
     }
 
@@ -362,7 +340,7 @@ export class Timeline extends ClassComponent {
                     // @ts-ignore: Unreachable code error
                     return this._subYScaleErrorsWarnings(d.error + d.warn)
                 })
-            this._renderSubchart(brushErrors, "errors")
+            this._renderSubchart(brushErrors, 'errors')
         }
 
         {
@@ -377,7 +355,7 @@ export class Timeline extends ClassComponent {
                     // @ts-ignore: Unreachable code error
                     return this._subYScaleErrorsWarnings(d.warn)
                 })
-            this._renderSubchart(brushWarnings, "warnings")
+            this._renderSubchart(brushWarnings, 'warnings')
         }
 
         {
@@ -392,45 +370,41 @@ export class Timeline extends ClassComponent {
                     return this._subYScaleChanges(d.changes)
                 })
 
-            this._renderSubchart(brushChanges, "changes")
+            this._renderSubchart(brushChanges, 'changes')
         }
 
         this._renderSubchartBrush()
     }
 
     _renderAxis(): void {
-        this._axisElem.html("")
+        this._axisElem.html('')
 
         const horizontalTickCount = Math.max(1, this._width / 200)
         this._axisElem
-            .append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0, " + this._height + ")")
+            .append('g')
+            .attr('class', 'x axis')
+            .attr('transform', 'translate(0, ' + this._height + ')')
             .call(
                 d3
                     .axisBottom(this._xScale)
                     .tickFormat(function (d) {
                         return formatDate(d)
                     })
-                    .ticks(horizontalTickCount)
+                    .ticks(horizontalTickCount),
             )
 
         if (this._showAxis) {
             const verticalTickCount = Math.max(1, this._height / 20)
             this._axisElem
-                .append("g")
-                .attr("class", "y axis")
+                .append('g')
+                .attr('class', 'y axis')
                 .call(d3.axisLeft(this._yScaleChanges).ticks(verticalTickCount))
 
             this._axisElem
-                .append("g")
-                .attr("class", "y axis")
-                .attr("transform", "translate(" + this._width + ", 0)")
-                .call(
-                    d3
-                        .axisRight(this._yScaleErrorsWarnings)
-                        .ticks(verticalTickCount)
-                )
+                .append('g')
+                .attr('class', 'y axis')
+                .attr('transform', 'translate(' + this._width + ', 0)')
+                .call(d3.axisRight(this._yScaleErrorsWarnings).ticks(verticalTickCount))
         }
     }
 
@@ -439,33 +413,33 @@ export class Timeline extends ClassComponent {
         this._subXAxis = d3.axisBottom(this._subXScale)
         // @ts-ignore: Unreachable code error
         this._subYAxisChanges = d3.axisLeft(this._subYScaleChanges)
-        this._subchartAxisElem.html("")
+        this._subchartAxisElem.html('')
 
         this._subchartAxisElem
-            .append("g")
-            .classed("x axis", true)
-            .attr("transform", "translate(0, " + 30 + ")")
+            .append('g')
+            .classed('x axis', true)
+            .attr('transform', 'translate(0, ' + 30 + ')')
             .call(this._subXAxis)
 
         if (this._showAxis) {
             this._subchartAxisElem
-                .append("g")
-                .classed("y axis", true)
-                .attr("transform", "translate(0, 0)")
+                .append('g')
+                .classed('y axis', true)
+                .attr('transform', 'translate(0, 0)')
                 .call(this._subYAxisChanges)
         }
         this._renderSubCharts()
     }
 
     _renderSubchartBrush(): void {
-        $(".x-brush").detach()
+        $('.x-brush').detach()
         // The test will not be able to work with a svgelement that does not exist
         if (isTesting) {
             return
         }
         const self = this
         // @ts-ignore: Unreachable code error
-        this._brush = d3.brushX(this._subXScale).on("brush end", function () {
+        this._brush = d3.brushX(this._subXScale).on('brush end', function () {
             // @ts-ignore: Unreachable code error
             if (event && !event.selection && event.sourceEvent) {
                 self._calculateBrushInit()
@@ -475,38 +449,36 @@ export class Timeline extends ClassComponent {
         })
 
         this._subSvgElem
-            .insert("g", ".sub-selector")
-            .classed("x-brush", true)
+            .insert('g', '.sub-selector')
+            .classed('x-brush', true)
             .call(this._brush)
-            .selectAll("rect")
-            .attr("y", 0)
-            .attr("height", 30)
+            .selectAll('rect')
+            .attr('y', 0)
+            .attr('height', 30)
     }
 
     _calculateBrushInit(): void {
         if (!this._brush) {
             return
         }
-        const startPos = this._subXScale(
-            this.time_machine_actual_date_range.from
-        )
+        const startPos = this._subXScale(this.time_machine_actual_date_range.from)
         const endPos = this.time_machine_actual_date_range.to
             ? this._subXScale(this.time_machine_actual_date_range.to)
             : 0
         if (startPos > 0 && endPos > 0 && startPos !== endPos) {
             this._movingTheBrush = true
             // @ts-ignore: Unreachable code error
-            d3.select(".x-brush").call(this._brush.move, [startPos, endPos])
+            d3.select('.x-brush').call(this._brush.move, [startPos, endPos])
             this._movingTheBrush = false
         } else if (endPos > 0 && startPos !== endPos) {
             this._movingTheBrush = true
             // @ts-ignore: Unreachable code error
-            d3.select(".x-brush").call(this._brush.move, [0, this._width])
+            d3.select('.x-brush').call(this._brush.move, [0, this._width])
             this._movingTheBrush = false
         } else {
             this._movingTheBrush = true
             // @ts-ignore: Unreachable code error
-            d3.select(".x-brush").call(this._brush.move, null)
+            d3.select('.x-brush').call(this._brush.move, null)
             this._movingTheBrush = false
         }
     }
@@ -520,11 +492,11 @@ export class Timeline extends ClassComponent {
         if (d3.brushSelection(self)) {
             const dateTo = moment(
                 // @ts-ignore: Unreachable code error
-                this._subXScale.invert(d3.brushSelection(self)[1])
+                this._subXScale.invert(d3.brushSelection(self)[1]),
             )
             const dateFrom = moment(
                 // @ts-ignore: Unreachable code error
-                this._subXScale.invert(d3.brushSelection(self)[0])
+                this._subXScale.invert(d3.brushSelection(self)[0]),
             )
             if (dateTo.isSame(dateFrom)) {
                 return
@@ -539,53 +511,35 @@ export class Timeline extends ClassComponent {
     }
 
     _applyUIRangeChange(): void {
-        if (
-            !this.time_machine_actual_date_range.to ||
-            !this.time_machine_actual_date_range.from
-        ) {
+        if (!this.time_machine_actual_date_range.to || !this.time_machine_actual_date_range.from) {
             return
         }
 
         let diff = moment.duration(
-            this.time_machine_actual_date_range.to.diff(
-                this.time_machine_actual_date_range.from
-            )
+            this.time_machine_actual_date_range.to.diff(this.time_machine_actual_date_range.from),
         )
         let durationSeconds = diff.asSeconds().toFixed()
-        let lastDate = this.sharedState.get(
-            "time_machine_timeline_preview_last_date"
-        )
+        let lastDate = this.sharedState.get('time_machine_timeline_preview_last_date')
         if (this.time_machine_actual_date_range.to.isSameOrAfter(lastDate)) {
-            this.sharedState.set("time_machine_date_to", null)
+            this.sharedState.set('time_machine_date_to', null)
         } else {
-            this.sharedState.set(
-                "time_machine_date_to",
-                this.time_machine_actual_date_range.to.toISOString()
-            )
+            this.sharedState.set('time_machine_date_to', this.time_machine_actual_date_range.to.toISOString())
         }
-        this.sharedState.set("time_machine_duration", durationSeconds)
+        this.sharedState.set('time_machine_duration', durationSeconds)
     }
 
     _renderSelector(): void {
-        this._selectorElem.html("")
+        this._selectorElem.html('')
 
         if (!this.actualTargetDate) {
             return
         }
 
         const margin = this._getMargin()
+        this._selectorElem.append('path').attr('d', 'M-7,' + -0.4 * margin.top + ' h14 v20 l-7,7 l-7,-7 z')
         this._selectorElem
-            .append("path")
-            .attr("d", "M-7," + -0.4 * margin.top + " h14 v20 l-7,7 l-7,-7 z")
-        this._selectorElem
-            .append("path")
-            .attr(
-                "d",
-                "M0," +
-                -0.4 * margin.top +
-                " v" +
-                (this._height + margin.top * 0.7)
-            )
+            .append('path')
+            .attr('d', 'M0,' + -0.4 * margin.top + ' v' + (this._height + margin.top * 0.7))
     }
 
     _updateSelectorPosition(): void {
@@ -596,109 +550,88 @@ export class Timeline extends ClassComponent {
             return
         }
         const selectorPositionX = this._xScale(moment(this.actualTargetDate))
-        this._selectorElem.attr(
-            "transform",
-            "translate(" + selectorPositionX + ")"
-        )
+        this._selectorElem.attr('transform', 'translate(' + selectorPositionX + ')')
     }
 
     _renderChart(
         chartObj: any, //d3.Line<[number, number]>
-        chartClass: string
+        chartClass: string,
     ): void {
         const charts = this._chartsElem
-            .selectAll("." + chartClass)
+            .selectAll('.' + chartClass)
             .data([this.chartData])
-            .attr("class", chartClass)
+            .attr('class', chartClass)
 
         charts.exit().remove()
 
-        charts
-            .enter()
-            .append("path")
-            .attr("class", chartClass)
-            .attr("d", chartObj)
-            .merge(charts)
-            .attr("d", chartObj)
+        charts.enter().append('path').attr('class', chartClass).attr('d', chartObj).merge(charts).attr('d', chartObj)
     }
 
     _renderSubchart(
         chartObj: any, //d3.Line<[number, number]>
-        chartClass: string
+        chartClass: string,
     ): void {
         const brushCharts = this._subElemCharts
-            .selectAll("." + chartClass)
+            .selectAll('.' + chartClass)
             .data([this.chartPreviewData])
-            .attr("class", chartClass)
+            .attr('class', chartClass)
 
         brushCharts.exit().remove()
 
         brushCharts
             .enter()
-            .append("path")
-            .attr("class", chartClass)
-            .attr("d", chartObj)
+            .append('path')
+            .attr('class', chartClass)
+            .attr('d', chartObj)
             .merge(brushCharts)
-            .attr("d", chartObj)
+            .attr('d', chartObj)
     }
 
     _onUserDragSelector(): void {
         // @ts-ignore: Unreachable code error
-        this._selectorElem.attr("transform", "translate(" + event.x + ", 0)")
+        this._selectorElem.attr('transform', 'translate(' + event.x + ', 0)')
         // @ts-ignore: Unreachable code error
         let date = moment(this._xScale.invert(event.x))
         if (date < this.time_machine_actual_date_range.from) {
             date = this.time_machine_actual_date_range.from
         }
-        if (
-            this.time_machine_actual_date_range.to &&
-            date > this.time_machine_actual_date_range.to
-        ) {
+        if (this.time_machine_actual_date_range.to && date > this.time_machine_actual_date_range.to) {
             date = this.time_machine_actual_date_range.to
         }
 
-        this.sharedState.set("time_machine_target_date", date)
+        this.sharedState.set('time_machine_target_date', date)
     }
 
     _formatXaxis(item: moment.MomentInput): string {
-        return moment(item).format("MMM DD hh:mm A")
+        return moment(item).format('MMM DD hh:mm A')
     }
 
     _renderSubchartSelector(): void {
-        $(".sub-selector").detach()
+        $('.sub-selector').detach()
         if (!this.actualTargetDate) {
             return
         }
-        this._subchartSelectorElem = this._subSvgElem
-            .append("g")
-            .attr("class", "sub-selector")
+        this._subchartSelectorElem = this._subSvgElem.append('g').attr('class', 'sub-selector')
 
-        this._subchartSelectorElem.append("path").attr("d", "M0,0 v" + 30)
+        this._subchartSelectorElem.append('path').attr('d', 'M0,0 v' + 30)
     }
 
     _updateSubchartSelectorPosition(): void {
-        if (
-            !this._subchartSelectorElem ||
-            !this.actualTargetDate ||
-            !this._xScale
-        ) {
-            $(".sub-selector").detach()
+        if (!this._subchartSelectorElem || !this.actualTargetDate || !this._xScale) {
+            $('.sub-selector').detach()
             return
         }
         const date = moment(this.actualTargetDate)
         const position = this._subXScale(date)
-        this._subchartSelectorElem.attr(
-            "transform",
-            "translate(" + position + ")"
-        )
+        this._subchartSelectorElem.attr('transform', 'translate(' + position + ')')
     }
 
     _onUserChartClick(): void {
         // @ts-ignore: Unreachable code error
         const posX = event.x + this._calculateCoeff(event.x, 25)
         const date = this._xScale.invert(posX)
-        this.sharedState.set("time_machine_enabled", true)
-        this.sharedState.set("time_machine_target_date", date)
+        this.sharedState.set('time_machine_enabled', true)
+        this.sharedState.set('time_machine_target_date', date)
     }
 
     _calculateCoeff(cursorX: number, padding: number): number {
@@ -711,35 +644,29 @@ export class Timeline extends ClassComponent {
     _renderHoverLine(): void {
         const self = this
         this._chartsElem
-            .on("mouseenter", function () {
-                self._hoverLineElem.attr("display", "inherit")
+            .on('mouseenter', function () {
+                self._hoverLineElem.attr('display', 'inherit')
             })
-            .on("mousemove", function () {
+            .on('mousemove', function () {
                 let mousex: number | [number, number] = d3.pointer(event)
                 mousex = mousex[0]
-                self._hoverLineElem.attr(
-                    "transform",
-                    "translate(" + mousex + ")"
-                )
+                self._hoverLineElem.attr('transform', 'translate(' + mousex + ')')
                 self._renderTooltip(mousex)
             })
-            .on("mouseover", function () {
-                let mousex: number | [number, number]  = d3.pointer(event)
+            .on('mouseover', function () {
+                let mousex: number | [number, number] = d3.pointer(event)
                 mousex = mousex[0]
-                self._hoverLineElem.attr(
-                    "transform",
-                    "translate(" + mousex + ")"
-                )
+                self._hoverLineElem.attr('transform', 'translate(' + mousex + ')')
             })
-            .on("mouseleave", function () {
-                self._hoverLineElem.attr("display", "none")
-                self._tooltipElem.style("opacity", "0")
+            .on('mouseleave', function () {
+                self._hoverLineElem.attr('display', 'none')
+                self._tooltipElem.style('opacity', '0')
             })
     }
 
     _renderTooltip(mousex: number): void {
         if (this._tooltipElem) {
-            this._tooltipElem.html("")
+            this._tooltipElem.html('')
         }
         // @ts-ignore: Unreachable code error
         const bisectDate = d3.bisector((d) => d.dateMoment).left
@@ -749,33 +676,24 @@ export class Timeline extends ClassComponent {
         if (!this.chartData[foundId]) {
             return
         }
-        const formattedDate = moment(date).format("MMM DD hh:mm A")
+        const formattedDate = moment(date).format('MMM DD hh:mm A')
         const { changes, error, warn } = this.chartData[foundId]
         const tooltipHtml =
-            (this.isTimeMachineActive
-                ? ""
-                : "<p>Click to activate Time Machine at </p>") +
+            (this.isTimeMachineActive ? '' : '<p>Click to activate Time Machine at </p>') +
             `<p><b>${formattedDate}</p></b>
-            <p class="txt-white">Changes${this.wrap ? "<br>" : ": "
-            }<b>${changes}</b></p>
-            <p class="txt-red">Errors${this.wrap ? "<br>" : ": "
-            }<b>${error}</b></p>
-            <p class="txt-orange">Warnings${this.wrap ? "<br>" : ": "
-            }<b>${warn}</b>
+            <p class="txt-white">Changes${this.wrap ? '<br>' : ': '}<b>${changes}</b></p>
+            <p class="txt-red">Errors${this.wrap ? '<br>' : ': '}<b>${error}</b></p>
+            <p class="txt-orange">Warnings${this.wrap ? '<br>' : ': '}<b>${warn}</b>
           </p>`
 
         const posX = mousex - this._calculateCoeff(mousex, 20)
 
         this._tooltipElem
-            .style("opacity", "1")
+            .style('opacity', '1')
             .html(tooltipHtml)
             .style(
-                "transform",
-                "translate(" +
-                posX +
-                "px, " +
-                (this.wrap ? this._height / 2 - 80 : this._height / 8) +
-                "px)"
+                'transform',
+                'translate(' + posX + 'px, ' + (this.wrap ? this._height / 2 - 80 : this._height / 8) + 'px)',
             )
     }
 
@@ -784,10 +702,7 @@ export class Timeline extends ClassComponent {
             return
         }
         const margin = this._getMargin()
-        this._hoverLineElem.attr(
-            "d",
-            "M0," + -0.4 * margin.top + " v" + (this._height + margin.top * 0.7)
-        )
+        this._hoverLineElem.attr('d', 'M0,' + -0.4 * margin.top + ' v' + (this._height + margin.top * 0.7))
     }
 
     _activateMainChartDomain(): void {
@@ -795,31 +710,19 @@ export class Timeline extends ClassComponent {
             return
         }
 
-        if (
-            !this.time_machine_actual_date_range.from ||
-            !this.time_machine_actual_date_range.to
-        ) {
+        if (!this.time_machine_actual_date_range.from || !this.time_machine_actual_date_range.to) {
             this._xScale.domain([])
         } else {
-            this._xScale.domain([
-                this.time_machine_actual_date_range.from,
-                this.time_machine_actual_date_range.to,
-            ])
+            this._xScale.domain([this.time_machine_actual_date_range.from, this.time_machine_actual_date_range.to])
         }
     }
 
     _dateRangesAreSame(newActual: Actual): boolean {
         return (
-            this._datesAreSame(
-                this.time_machine_actual_date_range.from,
-                newActual.from
-            ) &&
+            this._datesAreSame(this.time_machine_actual_date_range.from, newActual.from) &&
             !!this.time_machine_actual_date_range.to &&
             !!newActual.to &&
-            this._datesAreSame(
-                this.time_machine_actual_date_range.to,
-                newActual.to
-            )
+            this._datesAreSame(this.time_machine_actual_date_range.to, newActual.to)
         )
     }
 
@@ -831,36 +734,31 @@ export class Timeline extends ClassComponent {
     }
 
     componentDidMount() {
-        this._parentElem = d3.select(".chart-view")
+        this._parentElem = d3.select('.chart-view')
         this._setup()
 
-        this.subscribeToSharedState(
-            ["time_machine_actual_date_from", "time_machine_actual_date_to"],
-            () => {
-                let actual = this._timelineUtils.getActualRange()
+        this.subscribeToSharedState(['time_machine_actual_date_from', 'time_machine_actual_date_to'], () => {
+            let actual = this._timelineUtils.getActualRange()
 
-                if (this._dateRangesAreSame(actual)) {
-                    return
-                }
-                if (this._movingTheBrush) {
-                    return
-                }
-
-                let diff = moment.duration(actual.to.diff(actual.from))
-                this.durationSeconds = diff.asSeconds()
-
-                this.time_machine_actual_date_range = actual
-
-                this._calculateBrushInit()
+            if (this._dateRangesAreSame(actual)) {
+                return
             }
-        )
+            if (this._movingTheBrush) {
+                return
+            }
+
+            let diff = moment.duration(actual.to.diff(actual.from))
+            this.durationSeconds = diff.asSeconds()
+
+            this.time_machine_actual_date_range = actual
+
+            this._calculateBrushInit()
+        })
 
         this.subscribeToSharedState(
-            ["time_machine_enabled", "time_machine_target_date"],
+            ['time_machine_enabled', 'time_machine_target_date'],
             ({ time_machine_enabled, time_machine_target_date }) => {
-                this.actualTargetDate = moment(
-                    time_machine_target_date
-                ).toISOString()
+                this.actualTargetDate = moment(time_machine_target_date).toISOString()
                 this.isTimeMachineActive = time_machine_enabled
                 if (!time_machine_enabled || !time_machine_target_date) {
                     this.actualTargetDate = null
@@ -869,26 +767,20 @@ export class Timeline extends ClassComponent {
                 this._updateSelectorPosition()
                 this._renderSubchartSelector()
                 this._updateSubchartSelectorPosition()
-            }
+            },
         )
 
-        this.subscribeToSharedState(
-            "time_machine_timeline_data",
-            (time_machine_timeline_data) => {
-                this.chartData = time_machine_timeline_data || []
+        this.subscribeToSharedState('time_machine_timeline_data', (time_machine_timeline_data) => {
+            this.chartData = time_machine_timeline_data || []
 
-                this._renderTimelineMain()
-            }
-        )
+            this._renderTimelineMain()
+        })
 
-        this.subscribeToSharedState(
-            "time_machine_timeline_preview",
-            (time_machine_timeline_preview) => {
-                this.chartPreviewData = time_machine_timeline_preview || []
+        this.subscribeToSharedState('time_machine_timeline_preview', (time_machine_timeline_preview) => {
+            this.chartPreviewData = time_machine_timeline_preview || []
 
-                this._renderTimelineSub()
-            }
-        )
+            this._renderTimelineSub()
+        })
     }
 
     render() {

@@ -37,12 +37,12 @@ $timelineYellow: rgb(252, 189, 63);
 }
 
 .timeline svg .sub-selector * {
-    fill: rgb(252, 189, 63);
+    fill: $timelineYellow;
     stroke-width: 2;
-    stroke: rgb(252, 189, 63);
+    stroke: $timelineYellow;
 }
 
-.chart-view {
+.timeline .chart-view {
     width: calc(100% - 60px);
     height: 100%;
     display: flex;
@@ -52,14 +52,14 @@ $timelineYellow: rgb(252, 189, 63);
 }
 
 .x-brush > * {
-    height: 30px
+    height: 30px;
 }
 
-.custom-tooltip {
+.timeline .custom-tooltip {
     width: 120px;
     font-family: 'Montserrat';
     position: absolute;
-    background-color: #C4C4C4bb;
+    background-color: rgba(196, 196, 196, 0.7333333333);
     color: #3a1b1b;
     line-height: 15px;
     top: 0;
@@ -73,7 +73,7 @@ $timelineYellow: rgb(252, 189, 63);
         width: 0;
         height: 0;
         border-top: 15px solid transparent;
-        border-right: 15px solid #C4C4C4bb;
+        border-right: 15px solid rgba(196, 196, 196, 0.7333333333);
         border-bottom: 15px solid transparent;
         top: 10%;
         right: 100%;
@@ -88,7 +88,7 @@ $timelineYellow: rgb(252, 189, 63);
     }
 
     .txt-red {
-        background-color: #9B6666;
+        background-color: #9b6666;
     }
 
     .txt-orange {
@@ -100,17 +100,17 @@ $timelineYellow: rgb(252, 189, 63);
     }
 }
 
-.hover-line {
+.timeline .hover-line {
     stroke-width: 2;
     stroke: gray;
     opacity: 0.7;
 }
 
-.selected-time-bottom {
+.timeline .selected-time-bottom {
     font-size: 20px;
 }
 
-.selected-time-top {
+.timeline .selected-time-top {
     font-size: 40px;
 }
 
@@ -118,21 +118,20 @@ $timelineYellow: rgb(252, 189, 63);
     display: flex;
 }
 
-a:focus {
+.timeline a:focus {
     outline: none;
 }
 
-
-.tl-actions {
+.timeline .tl-actions {
     padding: 10px 15px;
-    border-left: solid 1px #35373E;
+    border-left: solid 1px #35373e;
     float: right;
     height: 100%;
     overflow: hidden;
     width: 83px;
 }
 
-.tl-actions a {
+.timeline .tl-actions a {
     display: block;
     float: left;
     width: 20px;
@@ -142,24 +141,24 @@ a:focus {
     cursor: pointer;
 }
 
-.tl-actions a.reset {
-    background: #292A2F url('/img/timeline/reset.svg') center center no-repeat;
+.timeline .tl-actions a.reset {
+    background: #292a2f url('/img/timeline/reset.svg') center center no-repeat;
     background-size: 16px;
 }
 
-.tl-actions a.timemachine {
-    background: #292A2F url('/img/timeline/clock.svg') center center no-repeat;
+.timeline .tl-actions a.timemachine {
+    background: #292a2f url('/img/timeline/clock.svg') center center no-repeat;
     background-size: 16px;
 }
 
-.tl-actions a.reset:hover {
-    background: #35373E url('/img/timeline/reset.svg') center center no-repeat;
+.timeline .tl-actions a.reset:hover {
+    background: #35373e url('/img/timeline/reset.svg') center center no-repeat;
 }
 
-.tl-actions a.timemachine:hover {
-    background: #35373E url('/img/timeline/clock.svg') center center no-repeat;
+.timeline .tl-actions a.timemachine:hover {
+    background: #35373e url('/img/timeline/clock.svg') center center no-repeat;
 }
 
-.tl-actions a.timemachine.active {
-    background: #FCBD3F url('/img/timeline/clock-active.svg') center center no-repeat;
+.timeline .tl-actions a.timemachine.active {
+    background: #fcbd3f url('/img/timeline/clock-active.svg') center center no-repeat;
 }

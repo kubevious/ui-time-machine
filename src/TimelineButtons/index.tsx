@@ -1,10 +1,10 @@
-import React from "react"
-import "./styles.scss"
-import cx from "classnames"
-import { ClassComponent } from "@kubevious/ui-framework"
-import moment from "moment"
-import { TimelineUtils } from "../timeline-utils"
-import { TimelineButtonsState } from "./types"
+import React from 'react'
+import './styles.scss'
+import cx from 'classnames'
+import { ClassComponent } from '@kubevious/ui-framework'
+import moment from 'moment'
+import { TimelineUtils } from '../timeline-utils'
+import { TimelineButtonsState } from './types'
 
 export class TimelineButtons extends ClassComponent<{}, TimelineButtonsState> {
     _timelineUtils: TimelineUtils
@@ -24,16 +24,14 @@ export class TimelineButtons extends ClassComponent<{}, TimelineButtonsState> {
     _toggle(): void {
         const { time_machine_enabled } = this.state
         if (time_machine_enabled) {
-            this.sharedState.set("time_machine_enabled", false)
+            this.sharedState.set('time_machine_enabled', false)
         } else {
-            this.sharedState.set("time_machine_enabled", true)
+            this.sharedState.set('time_machine_enabled', true)
 
             let actual = this._timelineUtils.getActualRange()
 
-            if (this.sharedState.get("time_machine_target_date")) {
-                const date = moment(
-                    this.sharedState.get("time_machine_target_date")
-                )
+            if (this.sharedState.get('time_machine_target_date')) {
+                const date = moment(this.sharedState.get('time_machine_target_date'))
                 if (date.isBetween(actual.from, actual.to)) {
                     return
                 }
@@ -41,28 +39,25 @@ export class TimelineButtons extends ClassComponent<{}, TimelineButtonsState> {
 
             const diff = actual.to.diff(actual.from) / 2
             const date = moment(actual.from).add(diff)
-            this.sharedState.set("time_machine_target_date", date.toISOString())
+            this.sharedState.set('time_machine_target_date', date.toISOString())
         }
     }
 
     _reset(): void {
         const initDuration = this._timelineUtils.getActualInitDuration()
 
-        this.sharedState.set("time_machine_enabled", false)
-        this.sharedState.set("time_machine_date_to", null)
-        this.sharedState.set("time_machine_duration", initDuration)
-        this.sharedState.set("time_machine_target_date", null)
+        this.sharedState.set('time_machine_enabled', false)
+        this.sharedState.set('time_machine_date_to', null)
+        this.sharedState.set('time_machine_duration', initDuration)
+        this.sharedState.set('time_machine_target_date', null)
     }
 
     componentDidMount() {
-        this.subscribeToSharedState(
-            "time_machine_enabled",
-            (time_machine_enabled) => {
-                this.setState({
-                    time_machine_enabled: time_machine_enabled,
-                })
-            }
-        )
+        this.subscribeToSharedState('time_machine_enabled', (time_machine_enabled) => {
+            this.setState({
+                time_machine_enabled: time_machine_enabled,
+            })
+        })
     }
 
     render() {
@@ -72,19 +67,14 @@ export class TimelineButtons extends ClassComponent<{}, TimelineButtonsState> {
                 <a
                     role="button"
                     id="btnTimelineTimeMachine"
-                    className={cx("timemachine", {
+                    className={cx('timemachine', {
                         active: time_machine_enabled,
                     })}
                     onClick={() => this._toggle()}
                 >
                     <span className="tooltiptext">Activate Time Machine</span>
                 </a>
-                <a
-                    role="button"
-                    id="btnTimelineTimeMachine"
-                    className={`reset`}
-                    onClick={() => this._reset()}
-                >
+                <a role="button" id="btnTimelineTimeMachine" className={`reset`} onClick={() => this._reset()}>
                     <span className="tooltiptext">Reset changes</span>
                 </a>
             </div>
