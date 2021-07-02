@@ -1,10 +1,11 @@
 import React from 'react'
-import './styles.scss'
 import cx from 'classnames'
 import { ClassComponent } from '@kubevious/ui-framework'
 import moment from 'moment'
 import { TimelineUtils } from '../timeline-utils'
 import { TimelineButtonsState } from './types'
+
+import './styles.scss'
 
 export class TimelineButtons extends ClassComponent<{}, TimelineButtonsState> {
     _timelineUtils: TimelineUtils
@@ -44,7 +45,7 @@ export class TimelineButtons extends ClassComponent<{}, TimelineButtonsState> {
     }
 
     _reset(): void {
-        const initDuration = this._timelineUtils.getActualInitDuration()
+        const initDuration = this._timelineUtils.getDefaultDuration()
 
         this.sharedState.set('time_machine_enabled', false)
         this.sharedState.set('time_machine_date_to', null)

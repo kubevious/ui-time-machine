@@ -1,12 +1,13 @@
-export type ChartData = {
+export type TimelineDataPoint = {
     dateMoment: moment.Moment
+    snapshotId?: string
     date: string
     changes: number
     error: number
     warn: number
 }
 
-export type Actual = {
+export type DateRange = {
     to?: moment.Moment
     from: moment.Moment
 }

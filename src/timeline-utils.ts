@@ -1,17 +1,17 @@
+import { ISharedState } from '@kubevious/ui-framework/dist'
 import moment, { Moment } from 'moment'
 
 export class TimelineUtils {
-    private _sharedState: any
-    private dayInSec: number
-    constructor(sharedState: {}) {
+    private _sharedState: ISharedState;
+    // private dayInSec: number
+    
+    constructor(sharedState: ISharedState) {
         this._sharedState = sharedState
-        this.dayInSec = 12 * 60 * 60
+        // this.dayInSec = 12 * 60 * 60
     }
 
-    getActualRange(): {
-        to: Moment
-        from: Moment
-    } {
+    getActualRange()
+    {
         const time_machine_date_to: string = this._sharedState.get('time_machine_date_to')
 
         let to = moment()
@@ -26,11 +26,13 @@ export class TimelineUtils {
             }
         }
 
-        const durationInSharedState: number = this._sharedState.get('time_machine_duration') || this.dayInSec
-        const durationSec: number =
-            this.getActualInitDuration() >= this.dayInSec || this.getActualInitDuration() > durationInSharedState
-                ? durationInSharedState
-                : this.getActualInitDuration()
+        // const durationInSharedState: number = this._sharedState.get('time_machine_duration') || this.dayInSec
+        // const durationSec: number =
+        //     this.getActualDuration() >= this.dayInSec || this.getActualDuration() > durationInSharedState
+        //         ? durationInSharedState
+        //         : this.getActualDuration()
+
+        const durationSec = this.getActualDuration();
 
         let from = to.clone().subtract(durationSec, 'seconds')
 
@@ -43,19 +45,30 @@ export class TimelineUtils {
         }
     }
 
-    getActualInitDuration(): number {
-        let initDuration: number = this.dayInSec
-        this._sharedState.subscribe(
-            'time_machine_timeline_preview',
-            (time_machine_timeline_preview: { dateMoment: Moment }[]) => {
-                const lastDate: Moment = this._sharedState.get('time_machine_timeline_preview_last_date') || moment()
-                const firstDate: Moment = time_machine_timeline_preview
-                    ? time_machine_timeline_preview[0].dateMoment
-                    : moment()
-                const previewDuration: number = lastDate.diff(firstDate, 'seconds')
-                initDuration = Math.min(previewDuration, this.dayInSec)
-            },
-        )
-        return initDuration
+    getActualDuration(): number {
+
+        const durationInSharedState: number = this._sharedState.get('time_machine_duration');
+
+        if (durationInSharedState) {
+            return durationInSharedState;
+        }
+
+        // let initDuration: number = this.dayInSec
+        // this._sharedState.subscribe(
+        //     'time_machine_timeline_preview',
+        //     (time_machine_timeline_preview: { dateMoment: Moment }[]) => {
+        //         const lastDate: Moment = this._sharedState.get('time_machine_timeline_preview_last_date') || moment()
+        //         const firstDate: Moment = time_machine_timeline_preview
+        //             ? time_machine_timeline_preview[0].dateMoment
+        //             : moment()
+        //         const previewDuration: number = lastDate.diff(firstDate, 'seconds')
+        //         initDuration = Math.min(previewDuration, this.dayInSec)
+        //     },
+        // )
+        return this.getDefaultDuration();
+    }
+
+    getDefaultDuration() {
+        return 12 * 60 * 60;
     }
 }

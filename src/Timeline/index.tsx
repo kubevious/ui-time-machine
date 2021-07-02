@@ -2,21 +2,21 @@ import React from 'react'
 import { ClassComponent } from '@kubevious/ui-framework'
 import $ from 'jquery'
 import _ from 'the-lodash'
-import moment, { DurationInputArg1 } from 'moment'
+import moment from 'moment'
 import { formatDate } from '../utils'
 import * as d3 from 'd3'
 import { TimelineButtons } from '../TimelineButtons'
 import { TimelineUtils } from '../timeline-utils'
 
 import './styles.scss'
-import { Actual, ChartData } from './type'
+import { DateRange, TimelineDataPoint } from './type'
 
 const isTesting = process.env.IS_TESTING
 
 export class Timeline extends ClassComponent {
-    actualTargetDate!: string | null
-    time_machine_actual_date_range: Actual
-    chartPreviewData: ChartData[]
+    private actualTargetDate!: string | null
+    private time_machine_actual_date_range: DateRange
+    private chartPreviewData: TimelineDataPoint[]
     private _timelineUtils: TimelineUtils
     private _showAxis: boolean
 
@@ -35,8 +35,8 @@ export class Timeline extends ClassComponent {
     private _subchartSelectorElem: any
 
     private _width!: number
-    wrap: boolean = false
-    chartData!: ChartData[]
+    private wrap: boolean = false
+    private chartData!: TimelineDataPoint[]
     private _xScale!: d3.ScaleTime<number, number, never>
     private _yScaleChanges!: number[] & d3.ScaleLinear<number, number, never>
     private _yScaleErrorsWarnings!: number[] & d3.ScaleLinear<number, number, never>
@@ -48,19 +48,13 @@ export class Timeline extends ClassComponent {
     private _brush!: d3.BrushBehavior<unknown>
     private _movingTheBrush: boolean = false
     isTimeMachineActive: boolean = false
-    durationSeconds!: number
-    dayInSec: DurationInputArg1
     private _height!: number
     constructor(props: {} | Readonly<{}>) {
         super(props)
 
-        this.time_machine_actual_date_range = {
-            from: moment().subtract(this.dayInSec, 'seconds'),
-        }
-
-        this.dayInSec = 12 * 60 * 60
         this.chartPreviewData = []
         this._timelineUtils = new TimelineUtils(this.sharedState)
+        this.time_machine_actual_date_range = this._timelineUtils.getActualRange();
         this._parentElem = null
         this._showAxis = false
     }
@@ -717,7 +711,7 @@ export class Timeline extends ClassComponent {
         }
     }
 
-    _dateRangesAreSame(newActual: Actual): boolean {
+    _dateRangesAreSame(newActual: DateRange): boolean {
         return (
             this._datesAreSame(this.time_machine_actual_date_range.from, newActual.from) &&
             !!this.time_machine_actual_date_range.to &&
@@ -746,9 +740,6 @@ export class Timeline extends ClassComponent {
             if (this._movingTheBrush) {
                 return
             }
-
-            let diff = moment.duration(actual.to.diff(actual.from))
-            this.durationSeconds = diff.asSeconds()
 
             this.time_machine_actual_date_range = actual
 
