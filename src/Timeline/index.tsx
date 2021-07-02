@@ -581,17 +581,20 @@ export class Timeline extends ClassComponent {
             .attr('d', chartObj)
     }
 
-    _onUserDragSelector(): void {
-        // @ts-ignore: Unreachable code error
-        this._selectorElem.attr('transform', 'translate(' + event.x + ', 0)')
-        // @ts-ignore: Unreachable code error
-        let date = moment(this._xScale.invert(event.x))
+    _onUserDragSelector(e: any): void {
+        const coords = d3.pointer(e, this._chartsElem.node());
+        const posX = coords[0];
+        let date = moment(this._xScale.invert(posX));
+        // console.log("[_onUserDragSelector] posX: ", posX, ", Date: ", date);
+
         if (date < this.time_machine_actual_date_range.from) {
             date = this.time_machine_actual_date_range.from
         }
         if (this.time_machine_actual_date_range.to && date > this.time_machine_actual_date_range.to) {
             date = this.time_machine_actual_date_range.to
         }
+
+        // this._selectorElem.attr('transform', 'translate(' + posX + ', 0)')
 
         this.sharedState.set('time_machine_target_date', date)
     }
@@ -620,10 +623,11 @@ export class Timeline extends ClassComponent {
         this._subchartSelectorElem.attr('transform', 'translate(' + position + ')')
     }
 
-    _onUserChartClick(): void {
-        // @ts-ignore: Unreachable code error
-        const posX = event.x + this._calculateCoeff(event.x, 25)
+    _onUserChartClick(e: any): void {
+        const coords = d3.pointer(e);
+        const posX = coords[0];
         const date = this._xScale.invert(posX)
+        console.log("[_onUserChartClick] x: %, date: %", posX, date);
         this.sharedState.set('time_machine_enabled', true)
         this.sharedState.set('time_machine_target_date', date)
     }
@@ -641,15 +645,15 @@ export class Timeline extends ClassComponent {
             .on('mouseenter', function () {
                 self._hoverLineElem.attr('display', 'inherit')
             })
-            .on('mousemove', function () {
-                let mousex: number | [number, number] = d3.pointer(event)
-                mousex = mousex[0]
+            .on('mousemove', function (e: any) {
+                const coords = d3.pointer(e);
+                const mousex = coords[0];
                 self._hoverLineElem.attr('transform', 'translate(' + mousex + ')')
                 self._renderTooltip(mousex)
             })
-            .on('mouseover', function () {
-                let mousex: number | [number, number] = d3.pointer(event)
-                mousex = mousex[0]
+            .on('mouseover', function (e: any) {
+                const coords = d3.pointer(e);
+                const mousex = coords[0];
                 self._hoverLineElem.attr('transform', 'translate(' + mousex + ')')
             })
             .on('mouseleave', function () {
@@ -665,6 +669,8 @@ export class Timeline extends ClassComponent {
         // @ts-ignore: Unreachable code error
         const bisectDate = d3.bisector((d) => d.dateMoment).left
         const date = this._xScale.invert(mousex)
+        console.log("[_renderTooltip] x: %, date: %", mousex, date);
+
         const foundId = bisectDate(this.chartData, moment(date))
 
         if (!this.chartData[foundId]) {
