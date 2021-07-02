@@ -585,7 +585,6 @@ export class Timeline extends ClassComponent {
         const coords = d3.pointer(e, this._chartsElem.node());
         const posX = coords[0];
         let date = moment(this._xScale.invert(posX));
-        // console.log("[_onUserDragSelector] posX: ", posX, ", Date: ", date);
 
         if (date < this.time_machine_actual_date_range.from) {
             date = this.time_machine_actual_date_range.from
@@ -627,7 +626,6 @@ export class Timeline extends ClassComponent {
         const coords = d3.pointer(e);
         const posX = coords[0];
         const date = this._xScale.invert(posX)
-        console.log("[_onUserChartClick] x: %, date: %", posX, date);
         this.sharedState.set('time_machine_enabled', true)
         this.sharedState.set('time_machine_target_date', date)
     }
@@ -669,8 +667,6 @@ export class Timeline extends ClassComponent {
         // @ts-ignore: Unreachable code error
         const bisectDate = d3.bisector((d) => d.dateMoment).left
         const date = this._xScale.invert(mousex)
-        console.log("[_renderTooltip] x: %, date: %", mousex, date);
-
         const foundId = bisectDate(this.chartData, moment(date))
 
         if (!this.chartData[foundId]) {
