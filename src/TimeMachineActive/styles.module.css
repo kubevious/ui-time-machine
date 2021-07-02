@@ -1,17 +1,19 @@
 .historyInfo {
-  text-align: center;
-  margin-left: 30%;
+  margin-right: 15px;
+
+  /* text-align: center;
   display: flex;
   align-items: center;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   color: white;
   position: absolute;
-  top: 15px;
+  top: 15px; */
 }
 
 .historyInfo span {
     display: inline-block;
+    margin-right: 15px;
 }
 
 .historyInfo span::before {
