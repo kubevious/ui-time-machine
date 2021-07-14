@@ -20,13 +20,13 @@
   "author": "Ruben Hakopian <ruben.hakopian@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@kubevious/ui-components": "^1.0.134",
+    "@kubevious/ui-components": "^1.0.141",
     "@kubevious/ui-framework": "^1.0.48",
     "classnames": "^2.2.6",
-    "postcss": "^8.2.8",
     "d3": "^6.5.0",
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
+    "postcss": "^8.2.8",
     "the-lodash": "^2.0.9"
   },
   "devDependencies": {

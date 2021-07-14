@@ -595,6 +595,7 @@ export class Timeline extends ClassComponent {
 
         // this._selectorElem.attr('transform', 'translate(' + posX + ', 0)')
 
+        this.sharedState.set('time_machine_target_snapshot_id', null)
         this.sharedState.set('time_machine_target_date', date)
     }
 
@@ -627,6 +628,7 @@ export class Timeline extends ClassComponent {
         const posX = coords[0];
         const date = this._xScale.invert(posX)
         this.sharedState.set('time_machine_enabled', true)
+        this.sharedState.set('time_machine_target_snapshot_id', null)
         this.sharedState.set('time_machine_target_date', date)
     }
 

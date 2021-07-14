@@ -40,6 +40,7 @@ export class TimelineButtons extends ClassComponent<{}, TimelineButtonsState> {
 
             const diff = actual.to.diff(actual.from) / 2
             const date = moment(actual.from).add(diff)
+            this.sharedState.set('time_machine_target_snapshot_id', null)
             this.sharedState.set('time_machine_target_date', date.toISOString())
         }
     }
@@ -50,6 +51,7 @@ export class TimelineButtons extends ClassComponent<{}, TimelineButtonsState> {
         this.sharedState.set('time_machine_enabled', false)
         this.sharedState.set('time_machine_date_to', null)
         this.sharedState.set('time_machine_duration', initDuration)
+        this.sharedState.set('time_machine_target_snapshot_id', null)
         this.sharedState.set('time_machine_target_date', null)
     }
 
