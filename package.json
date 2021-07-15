@@ -20,8 +20,8 @@
   "author": "Ruben Hakopian <ruben.hakopian@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@kubevious/ui-components": "^1.0.147",
-    "@kubevious/ui-framework": "^1.0.49",
+    "@kubevious/ui-components": "^1.0.148",
+    "@kubevious/ui-framework": "^1.0.50",
     "classnames": "^2.2.6",
     "d3": "^6.5.0",
     "jquery": "^3.5.1",
