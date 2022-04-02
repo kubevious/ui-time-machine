@@ -1,0 +1,72 @@
+
+.iconsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.changeSection {
+    margin-right: 10px;
+    display: flex;
+}
+
+.emptyContainer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.severity {
+    margin-right: 5px;
+}
+
+.row {
+    padding: 0px;
+    background: #1e1e1e;
+}
+
+.cell {
+    padding: 5px;
+    vertical-align: top;
+}
+
+.rowAlt {
+    background: #474d54;
+}
+
+.rowTimeMachineActive {
+    background: #fcbd3f;
+    color: #000000;
+}
+
+.alertsWrapper {
+    border-radius: 4px;
+    background: #292a2f;
+    height: 26px;
+    padding: 5px;
+}
+
+
+.mainContainer {
+    display: flex;
+    overflow-y: hidden;
+    height: 100%;
+}
+.mainContent {
+    display: block;
+    width: calc(100% - 160px);
+    overflow-y: auto;
+}
+.groupOptions {
+    display: block;
+    border-left: 1px solid #474d54;
+    width: 160px;
+    padding: 5px;
+}
+
+.loadMoreContainer {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
