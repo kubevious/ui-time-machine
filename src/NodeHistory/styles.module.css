@@ -21,6 +21,10 @@
     margin-right: 5px;
 }
 
+.tableHistory {
+    width: 100%;
+}
+
 .row {
     padding: 0px;
     background: #1e1e1e;
@@ -50,13 +54,14 @@
 
 .mainContainer {
     display: flex;
+    flex-direction: row;
     overflow-y: hidden;
     height: 100%;
 }
 .mainContent {
     display: block;
-    width: calc(100% - 160px);
     overflow-y: auto;
+    flex-grow: 1;
 }
 .groupOptions {
     display: block;

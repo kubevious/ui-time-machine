@@ -29,7 +29,7 @@ export const NodeHistoryViewHierarchy : FC<NodeHistoryViewHierarchyProps> = ({ e
     const myEntries = makeEntries(entries, time_machine_actual_snapshot_id, time_machine_target_date);
     
     return <>
-        <table>
+        <table className={styles.tableHistory}>
             <tbody>
                 
             {myEntries.map((x, index) => (
