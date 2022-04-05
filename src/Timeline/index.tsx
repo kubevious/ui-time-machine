@@ -509,11 +509,11 @@ export class Timeline extends ClassComponent {
             return
         }
 
-        let diff = moment.duration(
+        const diff = moment.duration(
             this.time_machine_actual_date_range.to.diff(this.time_machine_actual_date_range.from),
         )
-        let durationSeconds = diff.asSeconds().toFixed()
-        let lastDate = this.sharedState.get('time_machine_timeline_preview_last_date')
+        const durationSeconds = diff.asSeconds().toFixed()
+        const lastDate = this.sharedState.tryGet('time_machine_timeline_preview_last_date')
         if (this.time_machine_actual_date_range.to.isSameOrAfter(lastDate)) {
             this.sharedState.set('time_machine_date_to', null)
         } else {

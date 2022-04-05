@@ -26,7 +26,7 @@ export class NodeHistory extends ClassComponent<Props, State>
 
         this.state = {
             dn: null,
-            queryType: this.sharedState.get('change_history_query_type') || QUERY_NODE,
+            queryType: this.sharedState.get<string>('change_history_query_type', QUERY_NODE),
             result: null,
             time_machine_actual_snapshot_id : null,
             time_machine_target_date : null,

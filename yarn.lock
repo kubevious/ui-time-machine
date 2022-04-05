@@ -670,10 +670,10 @@
     the-promise "^2.0.12"
     uuid "^8.3.2"
 
-"@kubevious/ui-components@^1.0.206":
-  version "1.0.206"
-  resolved "https://registry.yarnpkg.com/@kubevious/ui-components/-/ui-components-1.0.206.tgz#ff77f6c1b919826252470944dc62f3fb3afae23b"
-  integrity sha512-fM45IdKoOH2io9kykTwvKdPWycJGShY9Xc/26aVW0nx3F4NEtr4K9YU7pD9dzAW6MSNsmcQNts+mwwcY4/i53w==
+"@kubevious/ui-components@^1.0.207":
+  version "1.0.207"
+  resolved "https://registry.yarnpkg.com/@kubevious/ui-components/-/ui-components-1.0.207.tgz#df25e75d5b39d73d0347ea2791c2eb2d4b284723"
+  integrity sha512-TdnbzL7sQNL8J2F34NyMqS2rPMFSpjTzwDcSDDfNHxJAR9jFjVUu14rs0xrZxwSL85UfiiD+sIg8eJzTh3cL3Q==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "6.1.1"
     "@fortawesome/free-brands-svg-icons" "6.1.1"
@@ -681,7 +681,7 @@
     "@fortawesome/free-solid-svg-icons" "6.1.1"
     "@fortawesome/react-fontawesome" "0.1.18"
     "@kubevious/entity-meta" "^1.0.56"
-    "@kubevious/ui-framework" "^1.0.57"
+    "@kubevious/ui-framework" "^1.0.58"
     "@kubevious/ui-middleware" "^1.0.46"
     "@types/codemirror" "^5.60.5"
     bootstrap "^5.0.0"
@@ -702,10 +702,10 @@
     the-promise "^2.0.13"
     uuid "^8.3.2"
 
-"@kubevious/ui-framework@^1.0.57":
-  version "1.0.57"
-  resolved "https://registry.yarnpkg.com/@kubevious/ui-framework/-/ui-framework-1.0.57.tgz#04b0a5abd7d65854afa20d033c6b35da440bfcda"
-  integrity sha512-0YqZFVnnpkdtKy5LFa/OZqHvdqQ7OOn43L3vAGkq4f6BvDcVWuym2P7WyFib90Iyy1Pz0El59AAgEVp9VT8Mzg==
+"@kubevious/ui-framework@^1.0.58", "@kubevious/ui-framework@^1.0.59":
+  version "1.0.59"
+  resolved "https://registry.yarnpkg.com/@kubevious/ui-framework/-/ui-framework-1.0.59.tgz#b83eb7f90c951f4bd8753b9b9a4e0245a3240e0c"
+  integrity sha512-tVoh8NbZ8tdKdTFvkkXJhUViFeLNxL0VSjoP6AAgoPvWHL42kohEPU27abEY3znAvQmOfebx7Da7BjWSuL5FUw==
   dependencies:
     "@kubevious/http-client" "^1.0.19"
     moment "^2.29.1"

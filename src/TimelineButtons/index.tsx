@@ -29,10 +29,11 @@ export class TimelineButtons extends ClassComponent<{}, TimelineButtonsState> {
         } else {
             this.sharedState.set('time_machine_enabled', true)
 
-            let actual = this._timelineUtils.getActualRange()
+            const actual = this._timelineUtils.getActualRange()
 
-            if (this.sharedState.get('time_machine_target_date')) {
-                const date = moment(this.sharedState.get('time_machine_target_date'))
+            const targetDate = this.sharedState.tryGet('time_machine_target_date');
+            if (targetDate) {
+                const date = moment(targetDate)
                 if (date.isBetween(actual.from, actual.to)) {
                     return
                 }
