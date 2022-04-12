@@ -11,7 +11,7 @@ export const NodeHistoryChanges: FC<{ item : HistoryNodeEntryChanges }> = ({ ite
     return <>
         <div>
             {item.notPresent && 
-                <span>Deleted</span>
+                <Label text="Deleted" />
             }
 
             {!item.notPresent && 
