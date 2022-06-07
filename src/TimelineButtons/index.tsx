@@ -6,6 +6,7 @@ import { TimelineUtils } from '../timeline-utils'
 import { TimelineButtonsState } from './types'
 
 import './styles.scss'
+// import styles from './styles.module.css';
 
 export class TimelineButtons extends ClassComponent<{}, TimelineButtonsState> {
     _timelineUtils: TimelineUtils

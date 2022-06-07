@@ -1,0 +1,45 @@
+/* TODO: Not Ready Yet. Get Rid of SCSS */
+
+.buttonsContainer
+{
+
+}
+
+.btnDefault
+{
+    display: block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+
+.btnTimeMachine
+{
+    background: #292A2F url('/img/timeline/clock.svg') center center no-repeat;
+    background-size: 20px;
+}
+.btnTimeMachine:hover
+{
+    background: #292A2F url('/img/timeline/clock.svg') center center no-repeat;
+    background-size: 20px;
+}
+
+.btnTimeMachineActive
+{
+    background: rgb(252, 189, 63) url('/img/timeline/clock-active.svg') center center no-repeat;
+    background-size: 20px;
+}
+
+.btnReset
+{
+    background: #292A2F url('/img/timeline/reset.svg') center center no-repeat;
+    background-size: 16px;
+}
+.btnReset::hover
+{
+    background: #35373E url('/img/timeline/reset.svg') center center no-repeat;
+}
