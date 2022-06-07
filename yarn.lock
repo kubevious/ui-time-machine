@@ -891,10 +891,10 @@
     the-promise "^2.0.12"
     uuid "^8.3.2"
 
-"@kubevious/ui-components@^1.0.237":
-  version "1.0.237"
-  resolved "https://registry.yarnpkg.com/@kubevious/ui-components/-/ui-components-1.0.237.tgz#d1d852f270a3773aa51a023072a26f546f675a16"
-  integrity sha512-Oc9XGwxXvGLg3yCNjkyxWotH+FQ9yjORmqC/5F4XhZQ7pqjnSJ3GV0PVFffA7UVi0xmPb/zsKHsS+QjgxBdtXw==
+"@kubevious/ui-components@^1.0.239":
+  version "1.0.239"
+  resolved "https://registry.yarnpkg.com/@kubevious/ui-components/-/ui-components-1.0.239.tgz#c7a9e233adf701f82dd6846eb096e9fde22b375b"
+  integrity sha512-/Lg2zdEp/YNpyc0aqGH6b/DpWb31Y9fugf96LO5CRu7KVtZ1NF6KHlwLSi4hsnXnJYMwByaDEeUE1qCL6zuQlw==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "6.1.1"
     "@fortawesome/free-brands-svg-icons" "6.1.1"
@@ -937,10 +937,10 @@
     the-promise "^2.0.13"
     uuid "^8.3.2"
 
-"@kubevious/ui-middleware@^1.0.64":
-  version "1.0.64"
-  resolved "https://registry.yarnpkg.com/@kubevious/ui-middleware/-/ui-middleware-1.0.64.tgz#4229db8349bab746cd10a452a051d6594be9332b"
-  integrity sha512-YEWloInU91OI29gN6zB6BPxRNrb0kk0JDsM/4n25sf9Utp88vVIFXqcl3hccLMFv/kBgAgc4M2WXiLWHjBGMGQ==
+"@kubevious/ui-middleware@^1.0.64", "@kubevious/ui-middleware@^1.0.71":
+  version "1.0.71"
+  resolved "https://registry.yarnpkg.com/@kubevious/ui-middleware/-/ui-middleware-1.0.71.tgz#b068dac0b2482da3beb053dc9462dbbb211f6f81"
+  integrity sha512-jV32VFhsU82JMDp6SGHTVdoQVJkle8RPE5A3/BbgVYAbr0IbEIN5lmvrXrMAMv4qzjHdfOigdazKE4X6e+NGlg==
   dependencies:
     "@kubevious/entity-meta" "^1.0.69"
     "@kubevious/http-client" "^1.0.19"
@@ -5551,7 +5551,7 @@ resolve@^1.10.0, resolve@^1.17.0, resolve@^1.18.1, resolve@^1.19.0:
     is-core-module "^2.2.0"
     path-parse "^1.0.6"
 
-resolve@^1.20.0:
+resolve@^1.20.0, resolve@^1.5.0:
   version "1.22.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.22.0.tgz#5e0b8c67c15df57a89bdbabe603a002f21731198"
   integrity sha512-Hhtrw0nLeSrFQ7phPp4OOcVjLPIeMnRlr5mcnVuMe7M/7eBn98A3hmFRLoFo3DLZkivSYwhRUJTyPyWAk56WLw==
@@ -5602,6 +5602,15 @@ rollup-plugin-postcss@^4.0.2:
     rollup-pluginutils "^2.8.2"
     safe-identifier "^0.4.2"
     style-inject "^0.3.0"
+
+rollup-plugin-sass@^1.2.12:
+  version "1.2.12"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-sass/-/rollup-plugin-sass-1.2.12.tgz#a7ed9710482b932dac758f8526c14e1da33d02ac"
+  integrity sha512-LD1LwKOGRFwg42PsSsOjYwYlt6B+YuGTA0yjgZiVTfx/sXBr8FBjX97YEPVW6Z/lNKRsxP+xufFONp2ADOWkVQ==
+  dependencies:
+    "@rollup/pluginutils" "^3.1.0"
+    resolve "^1.5.0"
+    sass "^1.7.2"
 
 rollup-plugin-typescript2@^0.32.0:
   version "0.32.0"
@@ -5683,7 +5692,7 @@ sass-loader@^13.0.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass@^1.52.2:
+sass@^1.52.2, sass@^1.7.2:
   version "1.52.2"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.52.2.tgz#cd1f03e0e7be5bb2cebcf1c34d735f087d790936"
   integrity sha512-mfHB2VSeFS7sZlPv9YohB9GB7yWIgQNTGniQwfQ04EoQN0wsQEv7SwpCwy/x48Af+Z3vDeFXz+iuXM3HK/phZQ==

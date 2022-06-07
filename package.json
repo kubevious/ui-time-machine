@@ -20,9 +20,9 @@
   "author": "Ruben Hakopian <ruben.hakopian@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@kubevious/ui-components": "^1.0.237",
+    "@kubevious/ui-components": "^1.0.239",
     "@kubevious/ui-framework": "^1.0.59",
-    "@kubevious/ui-middleware": "^1.0.64",
+    "@kubevious/ui-middleware": "^1.0.71",
     "classnames": "^2.2.6",
     "d3": "^6.5.0",
     "jquery": "^3.5.1",
@@ -51,6 +51,7 @@
     "eslint": "^7.7.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.0",
+    "postcss": "^8.4.14",
     "prettier": "^2.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -58,8 +59,8 @@
     "rollup-plugin-img": "^1.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-sass": "^1.2.12",
     "rollup-plugin-typescript2": "^0.32.0",
-    "postcss": "^8.4.14",
     "sass": "^1.52.2",
     "sass-loader": "^13.0.0",
     "should": "^13.2.3",
@@ -71,7 +72,7 @@
   "resolutions": {
     "the-lodash": "^2.0.9",
     "@kubevious/ui-framework": "^1.0.59",
-    "@kubevious/ui-components": "^1.0.237",
-    "@kubevious/ui-middleware": "^1.0.64"
+    "@kubevious/ui-components": "^1.0.239",
+    "@kubevious/ui-middleware": "^1.0.71"
   }
 }

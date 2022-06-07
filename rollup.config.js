@@ -3,6 +3,7 @@ import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import sass from 'rollup-plugin-sass';
 import json from '@rollup/plugin-json';
 
 import pkg from './package.json'
@@ -32,6 +33,7 @@ export default {
         'node_modules/react-is/index.js': ['isValidElementType']
       }
     }),
+    sass({ insert: true }),
     json()
   ],
   external: ['react', 'react-dom']
